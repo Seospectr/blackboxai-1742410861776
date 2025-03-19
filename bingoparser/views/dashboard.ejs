@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BingX Анализатор - Панель управления</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="bg-gray-900 text-white min-h-screen">
+    <nav class="bg-gray-800 p-4 flex justify-between items-center">
+        <h1 class="text-xl font-bold">BingX Анализатор</h1>
+        <div>
+            <% if (user.isAdmin) { %>
+                <a href="/admin" class="text-white hover:text-gray-300 mr-4">Панель администратора</a>
+            <% } %>
+            <a href="/logout" class="text-white hover:text-gray-300">Выход</a>
+        </div>
+    </nav>
+
+    <main class="container mx-auto p-6">
+        <div class="flex justify-between items-center mb-6">
+            <h2 class="text-2xl">Анализ рынка</h2>
+            <button onclick="refreshData()" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+                Обновить данные
+            </button>
+        </div>
+
+        <div class="overflow-x-auto">
+            <table class="w-full bg-gray-800 rounded-lg">
+                <thead>
+                    <tr class="text-left">
+                        <th class="p-4">Монета</th>
+                        <th class="p-4">Тренд</th>
+                        <th class="p-4">Текущая цена</th>
+                        <th class="p-4">Волна Эллиотта</th>
+                        <th class="p-4">Точка входа</th>
+                        <th class="p-4">Взять прибыль</th>
+                        <th class="p-4">Стоп-лосс</th>
+                        <th class="p-4">Вероятность успеха</th>
+                    </tr>
+                </thead>
+                <tbody id="marketData">
+                    <% coins.forEach(coin => { %>
+                        <tr class="border-t border-gray-700">
+                            <td class="p-4"><%= coin.symbol.toUpperCase() %></td>
+                            <td class="p-4">
+                                <span class="px-2 py-1 rounded text-sm <%= 
+                                    coin.trend === 'Восходящий' ? 'bg-green-600' : 
+                                    coin.trend === 'Нисходящий' ? 'bg-red-600' : 'bg-yellow-600' 
+                                %>">
+                                    <%= coin.trend %>
+                                </span>
+                            </td>
+                            <td class="p-4"><%= coin.currentPrice %></td>
+                            <td class="p-4"><%= coin.elliottWave %></td>
+                            <td class="p-4 text-green-400"><%= coin.entryPoint %></td>
+                            <td class="p-4 text-blue-400"><%= coin.takeProfit %></td>
+                            <td class="p-4 text-red-400"><%= coin.stopLoss %></td>
+                            <td class="p-4">
+                                <div class="flex items-center">
+                                    <div class="w-24 bg-gray-700 rounded-full h-2 mr-2">
+                                        <div class="bg-blue-600 h-2 rounded-full" style="width: <%= parseFloat(coin.probability) * 100 %>%"></div>
+                                    </div>
+                                    <%= (parseFloat(coin.probability) * 100).toFixed(0) %>%
+                                </div>
+                            </td>
+                        </tr>
+                    <% }); %>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <script>
+        function refreshData() {
+            fetch('/refresh-data')
+                .then(response => response.json())
+                .then(data => {
+                    location.reload();
+                })
+                .catch(error => {
+                    console.error('Ошибка при обновлении данных:', error);
+                });
+        }
+    </script>
+</body>
+</html>
