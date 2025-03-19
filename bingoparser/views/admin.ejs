@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BingX Анализатор - Панель администратора</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="bg-gray-900 text-white min-h-screen">
+    <nav class="bg-gray-800 p-4 flex justify-between items-center">
+        <h1 class="text-xl font-bold">Панель администратора</h1>
+        <div>
+            <a href="/dashboard" class="text-white hover:text-gray-300 mr-4">Панель управления</a>
+            <a href="/logout" class="text-white hover:text-gray-300">Выход</a>
+        </div>
+    </nav>
+
+    <main class="container mx-auto p-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Управление пользователями -->
+            <div class="bg-gray-800 p-6 rounded-lg">
+                <h2 class="text-xl mb-4">Управление пользователями</h2>
+                <form action="/admin/create-user" method="POST">
+                    <div class="mb-4">
+                        <label class="block text-sm mb-2">Новое имя пользователя</label>
+                        <input type="text" name="username" placeholder="Введите имя пользователя" 
+                               class="w-full p-2 rounded bg-gray-700 text-white" required>
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-sm mb-2">Новый пароль</label>
+                        <input type="password" name="password" placeholder="Введите пароль" 
+                               class="w-full p-2 rounded bg-gray-700 text-white" required>
+                    </div>
+                    <div class="mb-4">
+                        <label class="flex items-center">
+                            <input type="checkbox" name="isAdmin" class="mr-2">
+                            <span>Права администратора</span>
+                        </label>
+                    </div>
+                    <button type="submit" class="w-full bg-green-600 text-white p-2 rounded hover:bg-green-700">
+                        Создать пользователя
+                    </button>
+                </form>
+            </div>
+
+            <!-- Конфигурация API BingX -->
+            <div class="bg-gray-800 p-6 rounded-lg">
+                <h2 class="text-xl mb-4">Конфигурация API BingX</h2>
+                <form action="/admin/update-api-keys" method="POST">
+                    <div class="mb-4">
+                        <label class="block text-sm mb-2">API Ключ</label>
+                        <input type="text" name="apiKey" placeholder="Введите API ключ BingX" 
+                               class="w-full p-2 rounded bg-gray-700 text-white" required>
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-sm mb-2">API Секрет</label>
+                        <input type="password" name="apiSecret" placeholder="Введите API секрет BingX" 
+                               class="w-full p-2 rounded bg-gray-700 text-white" required>
+                    </div>
+                    <button type="submit" class="w-full bg-blue-600 text-white p-2 rounded hover:bg-blue-700">
+                        Обновить API ключи
+                    </button>
+                </form>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
