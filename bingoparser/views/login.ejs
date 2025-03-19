@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BingX Анализатор - Вход</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="bg-gray-900 text-white min-h-screen flex items-center justify-center">
+    <div class="bg-gray-800 p-8 rounded-lg shadow-lg w-96">
+        <h1 class="text-2xl font-bold mb-6 text-center">BingX Анализатор</h1>
+        <form action="/login" method="POST">
+            <div class="mb-4">
+                <label class="block text-sm mb-2">Имя пользователя</label>
+                <input type="text" name="username" placeholder="Введите имя пользователя" 
+                       class="w-full p-2 rounded bg-gray-700 text-white" required>
+            </div>
+            <div class="mb-6">
+                <label class="block text-sm mb-2">Пароль</label>
+                <input type="password" name="password" placeholder="Введите пароль" 
+                       class="w-full p-2 rounded bg-gray-700 text-white" required>
+            </div>
+            <% if (locals.error) { %>
+                <div class="text-red-500 mb-4"><%= error %></div>
+            <% } %>
+            <button type="submit" class="w-full bg-blue-600 text-white p-2 rounded hover:bg-blue-700">
+                Войти
+            </button>
+        </form>
+    </div>
+</body>
+</html>
