@@ -1,0 +1,6 @@
+{
+  "bingx": {
+    "apiKey": "test_bingx_api_key_123",
+    "apiSecret": "test_bingx_api_secret_456"
+  }
+}
