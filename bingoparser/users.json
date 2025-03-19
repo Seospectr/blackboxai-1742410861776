@@ -1,0 +1,17 @@
+[
+  {
+    "username": "admin",
+    "password": "$2b$10$Hnr/tSMdHknsBKv9/rvYUePYOgaXrrn9l4UfMoZ3yVsENcH7TOkjm",
+    "isAdmin": true
+  },
+  {
+    "username": "trader",
+    "password": "$2b$10$VLJr2FNf/vl/2b7hr1jHOuiAjNI9BmImtH23uhjMUUxCtmxmSeVZS",
+    "isAdmin": false
+  },
+  {
+    "username": "аналитик",
+    "password": "$2b$10$50wUuawIwfUAuNrCeBY4WeyVcoXYWWjCSQymE1szmCZ.jS/zogYGy",
+    "isAdmin": false
+  }
+]
